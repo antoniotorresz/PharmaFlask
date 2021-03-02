@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Sistema gestor farmacia{% endblock %}
+
+{% block content %}
+    <h1 class="title is-4">Registrar nuevo proveedor</h1>
+    <div class="card">
+        <div class="card-header">
+            <p class="card-header-title">
+                Datos del proveedor
+            </p>
+            <div class="card-header-icon">
+                <a class="button is-danger is-outlined" href="{{ url_for('index_proveedores') }}" onclick="return confirm('Se perderán todos los cambios \n ¿Continuar?')">Cancelar</a>
+            </div>
+        </div>
+
+        <div class="card-content">
+            <div class="content">
+                <form action="{{ url_for('proveedor_guardar') }}" method="POST">
+                    <div class="field">
+                        <label class="label">Nombre</label>
+                        <div class="control">
+                            <input class="input" type="text" name="nombre" required>
+                        </div>
+                        <p class="help">Puede ser el nombre de la persona o razón social</p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">RFC</label>
+                        <div class="control">
+                            <input class="input" type="text" name="rfc">
+                        </div>
+                        <p class="help">Si no tiene puede dejar el campo vacío</p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Dirección</label>
+                        <div class="control">
+                            <input class="input" type="text" name="direccion" required>
+                        </div>
+                        <p class="help">Dirección física del local o empresa</p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Teléfono de contacto</label>
+                        <div class="control">
+                            <input class="input" type="text" name="telefono" required>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="button is-link is-outlined" style="margin-top: 10px;">Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

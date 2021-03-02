@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Productos{% endblock %}
+
+{% block content %}
+    <h1 class="title is-4">Gestión de proveedores</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <p class="card-header-title">
+                Proveedores activos en el sistema
+            </p>
+            <div class="card-header-icon"><a class="button is-primary is-outlined"
+                                             href="{{ url_for('proveedor_guardar') }}">+</a></div>
+        </div>
+
+        <div class="card-content">
+            <div class="container" style="overflow-x: auto;">
+                <table class="table is-bordered pricing__table is-fullwidth">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>RFC</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+
+                    {% for p in provedores %}
+                        <tr>
+                            <td>{{ p[1] }}</td>
+                            <td>{{ p[2] }}</td>
+                            <td>{{ p[3] }}</td>
+                            <td>{{ p[4] }}</td>
+                            <td><a href="{{ url_for('proveedor_editar', id=p[0]) }}">Editar</a>
+                                <a href="{{ url_for('proveedor_eliminar', id=p[0]) }}" onclick="return confirm('¿Seguro que desea borrar el registro de {{ p[1] }}?\n estos cambios son irreversibles.')">Borrar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
