@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro sintoma{% endblock %}
+
+{% block content %}
+    <h1 class="title is-4">Modificar detalles de {{ i[1] }}</h1>
+    <div class="card">
+        <div class="card-header">
+            <p class="card-header-title">
+                Datos del nuevo sintoma
+            </p>
+            <div class="card-header-icon">
+                <a class="button is-danger is-outlined" href="{{ url_for('index_indicaciones') }}" onclick="return confirm('Se perderán todos los cambios \n ¿Continuar?')">Cancelar</a>
+            </div>
+        </div>
+
+        <div class="card-content">
+            <div class="content">
+                <form action="{{ url_for('indicacion_editar', id=i[0]) }}" method="POST">
+                    <div class="field">
+                        <label class="label">Nombre</label>
+                        <div class="control">
+                            <input class="input" type="text" name="nombre" value="{{ i[1] }}" required>
+                        </div>
+                        <p class="help">Puede ser el nombre de la persona o razón social</p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Descripción</label>
+                        <div class="control">
+                            <input class="input" type="text" name="descripcion" value="{{ i[2] }}" required>
+                        </div>
+                        <p class="help">Agregue de manera breve lo que se siente tener ese sintoma o algunas de las caracteristicas</p>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="button is-link is-outlined" style="margin-top: 10px;">Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

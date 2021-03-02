@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Productos{% endblock %}
+
+{% block content %}
+    <h1 class="title is-4">Gestión de sintomas</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <p class="card-header-title">
+                Sintomas registrados
+            </p>
+            <div class="card-header-icon"><a class="button is-primary is-outlined"
+                                             href="{{ url_for('indicacion_guardar') }}">+</a></div>
+        </div>
+
+        <div class="card-content">
+            <div class="container" style="overflow-x: auto;">
+                <table class="table is-bordered pricing__table is-fullwidth">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Acciones</th>
+                    </tr>
+
+                    {% for i in indicaciones %}
+                        <tr>
+                            <td>{{ i[1] }}</td>
+                            <td>{{ i[2] }}</td>
+                            <td><a href="{{ url_for('indicacion_editar', id=i[0]) }}">Editar</a>
+                                <a href="{{ url_for('indicacion_eliminar', id=i[0]) }}"
+                                   onclick="return confirm('¿Seguro que desea borrar el registro de {{ i[1] }}?\n estos cambios son irreversibles.')">Borrar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

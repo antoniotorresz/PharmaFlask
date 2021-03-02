@@ -52,7 +52,37 @@ def proveedor_eliminar(id):
 
 @app.route('/Indicaciones')
 def index_indicaciones():
-    return "index indicaciones"
+    return render_template('index_indicaciones.html', indicaciones = db_consulta("SELECT * FROM farmacia.indicacion order by id_indicacion desc "))
+
+@app.route('/Indicaciones/Save', methods=["GET", "POST"])
+def indicacion_guardar():
+    if request.method == "GET":
+        return render_template('agregar_indicacion.html')
+    if request.method == "POST":
+        nombre = request.form['nombre']
+        desc = request.form['descripcion']
+
+        query = "INSERT INTO farmacia.indicacion(nombre, descripcion) VALUES ('{}', '{}')".format(nombre, desc)
+        db_modificacion(query)
+        return redirect(url_for('index_indicaciones'))
+
+@app.route('/Indicaciones/Edit/<int:id>', methods=["GET", "POST"])
+def indicacion_editar(id):
+    if request.method == "GET":
+        indicacion = db_consulta("SELECT * FROM farmacia.indicacion WHERE id_indicacion = {}".format(id))[0]
+        return render_template('editar_indicacion.html', i = indicacion)
+    if request.method == "POST":
+        nombre = request.form['nombre']
+        desc = request.form['descripcion']
+        query = "UPDATE farmacia.indicacion SET nombre = '{}', descripcion = '{}' WHERE id_indicacion = {}".format(nombre, desc, id)
+        db_modificacion(query)
+        return redirect(url_for('index_indicaciones'))
+
+@app.route('/Indicaciones/Delete/<int:id>', methods=["GET"])
+def indicacion_eliminar(id):
+    if id:
+        db_modificacion("DELETE FROM farmacia.indicacion WHERE id_indicacion = {}".format(id))
+        return redirect(url_for('index_indicaciones'))
 
 @app.route('/Proveedores')
 def index_proveedores():
@@ -81,6 +111,7 @@ def db_modificacion(query):
         conn.commit()
     except Exception as e:
         print("Error modificando regristro -> {}".format(e))
+        conn.rollback()
     finally:
         conn.close()
 
