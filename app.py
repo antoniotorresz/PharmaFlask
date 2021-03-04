@@ -98,7 +98,21 @@ def producto_update(id):
         db_modificacion(query)
         return redirect(url_for('index_productos'))
 
-
+@app.route('/Productos/Remove/<int:id>')
+def producto_remove(id):
+    if id:
+        #removiendo registro de la base de datos
+        db_modificacion("CALL delete_producto(CAST({} AS INTEGER))".format(id))
+        #eliminando foto del servidor, si es que existe
+        try:
+            prod = db_consulta("SELECT * FROM listar_productos_inicio WHERE id_producto = {} ".format(id))[0]
+            basedir = os.path.abspath(os.path.dirname(__file__))
+            product_image = os.path.join(basedir, app.config['UPLOAD_FOLDER'], prod[4])
+            print(product_image)
+            os.remove(product_image)
+        except Exception as e:
+            print("Error eliminando la imagen, probablemente no esté el recurso disponible -> {}".format(e))
+        return redirect(url_for('index_productos'))
 
 @app.route('/Proveedor/Save', methods=["POST", "GET"])
 def proveedor_guardar():
