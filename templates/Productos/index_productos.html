@@ -37,6 +37,7 @@
                             <td>{% for e in p[7] %}
                                 <p class="button is-rounded is-danger is-light is-static">{{ e }}</p> {% endfor %}</td>
                             <td>
+
                                 <a href="{{ url_for('producto_update', id=p[0]) }}">Modificar</a> |
                                 <a href="{{ url_for('producto_remove', id=p[0]) }}"
                                    onclick="return confirm('¿Seguro que desea borrar el registro de {{ p[1] }}?\n los cambios son irreversibles.')">Eliminar</a>
