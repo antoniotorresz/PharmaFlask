@@ -52,11 +52,6 @@ pip install -r requirements.txt
 ## Base de datos
 Ejecute el archivo *database.sql* en una consola de postgres con herramientas como [PgAdmin](https://www.pgadmin.org/), [Datagrip](https://www.jetbrains.com/es-es/datagrip/) o [Dbeaver](https://dbeaver.io/)
 
-
-Al ejecutar correctamente las instrucciones se generará la siguiente base de datos: 
-
-![farmacia_ER](https://user-images.githubusercontent.com/43243319/110026497-52547d80-7cf6-11eb-9c62-7ac7464ac938.png)
-
 # Iniciar servidor flask
 Para iniciar el servidor flask, y a su vez ejecutar la aplicación ejecute el siguente comando en la raíz del proyecto: 
 
