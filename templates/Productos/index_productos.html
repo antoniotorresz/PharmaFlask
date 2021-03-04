@@ -19,6 +19,7 @@
                 <table class="table is-bordered pricing__table is-fullwidth is-hoverable">
                     <tr>
                         <th>Nombre</th>
+                        <th>Imagen</th>
                         <th>Precio venta</th>
                         <th>Sustancias activas</th>
                         <th>Indicaciones médicas</th>
@@ -28,12 +29,14 @@
                     {% for p in productos %}
                         <tr>
                             <td>{{ p[1] }}</td>
+                            <td><img src='{{ url_for('static', filename='product_images/' + p[4]) }}'
+                            alt="{{ p[1] }}" style="width: 50px;"></td>
                             <td>{{ p[3] }}</td>
                             <td>{% for e in p[5] %}
                                 <p class="button is-rounded is-primary is-light is-static">{{ e }}</p> {% endfor %}</td>
                             <td>{% for e in p[7] %}
                                 <p class="button is-rounded is-danger is-light is-static">{{ e }}</p> {% endfor %}</td>
-                            <td><a>Detalles</a>
+                            <td>
                                 <a href="{{ url_for('producto_update', id=p[0]) }}">Modificar</a> |
                                 <a href="{{ url_for('producto_remove', id=p[0]) }}"
                                    onclick="return confirm('¿Seguro que desea borrar el registro de {{ p[1] }}?\n los cambios son irreversibles.')">Eliminar</a>
