@@ -4,8 +4,8 @@
 
 {% block content %}
     <h1 class="title is-4">Gestión de proveedores</h1>
-
-    <div class="card">
+    <input class="input is-link is-rounded" type="text" placeholder="Escriba para buscar." id="search">
+    <div class="card" style="margin-top: 1em;">
         <div class="card-header">
             <p class="card-header-title">
                 Proveedores activos en el sistema
@@ -16,7 +16,7 @@
 
         <div class="card-content">
             <div class="container" style="overflow-x: auto;">
-                <table class="table is-bordered pricing__table is-fullwidth">
+                <table class="table is-bordered pricing__table is-fullwidth" id="myTable">
                     <tr>
                         <th>Nombre</th>
                         <th>RFC</th>

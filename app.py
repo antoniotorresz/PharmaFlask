@@ -11,7 +11,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return redirect(url_for('index_productos'))
 
 
 @app.route('/Productos')

@@ -8,7 +8,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            $("#search").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -41,10 +52,13 @@
 </section>
 <footer class="footer has-background-white-ter">
     <div class="content has-text-centered ">
+        <img src="{{ url_for('static', filename='gnu-logo.png') }}" width="40px;">
         <p>
             <strong>PharmaFlask</strong> por <a href="https://github.com/antoniotorresz">Antonio Torres</a>. Este código
             está bajo licencia
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+            <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License</a>. Para el uso personal y dentro de establecimientos.
+            <br>
+            La venta y distibución no oficial de este producto de sofware es completamente ilegal.
         </p>
     </div>
 </footer>
