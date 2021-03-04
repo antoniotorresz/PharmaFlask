@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Proveedores{% endblock %}
+
+{% block content %}
+    <h1 class="title is-4">Gestión de productos</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <p class="card-header-title">
+                Productos activos en el sistema
+            </p>
+            <div class="card-header-icon"><a class="button is-primary is-outlined"
+                                             href="{{ url_for('producto_guardar') }}">+</a></div>
+        </div>
+
+        <div class="card-content">
+            <div class="container" style="overflow-x: auto;">
+                <table class="table is-bordered pricing__table is-fullwidth is-hoverable">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio venta</th>
+                        <th>Sustancias activas</th>
+                        <th>Indicaciones médicas</th>
+                        <th>Acciones</th>
+                    </tr>
+
+                    {% for p in productos %}
+                        <tr>
+                            <td>{{ p[1] }}</td>
+                            <td>{{ p[3] }}</td>
+                            <td>{% for e in p[5] %} <p class="button is-rounded is-primary is-light is-static">{{ e }}</p> {% endfor %}</td>
+                            <td>{% for e in p[7] %} <p class="button is-rounded is-danger is-light is-static">{{ e }}</p> {% endfor %}</td>
+                            <td><a>Detalles</a> |
+                                <a href="{{ url_for('producto_update', id=p[0]) }}">Modificar</a> |
+                                <a>Eliminar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

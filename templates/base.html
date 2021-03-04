@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}  {% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
 
 </head>
@@ -14,7 +15,7 @@
 <nav class="navbar is-light" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ url_for('index') }}">
-            <img src="{{ url_for('static', filename='pharmacy.svg') }}"
+            <img src="{{ url_for('static', filename='logo.png') }}"
                  alt="Inicio">
             <h4 class="title is-4">PharmaFlask</h4>
         </a>
@@ -41,10 +42,9 @@
 <footer class="footer has-background-white-ter">
     <div class="content has-text-centered ">
         <p>
-            <strong>PharmaFlask</strong> por <a href="https://github.com/antoniotorresz">Antonio Torres</a>. Este código está bajo licencia
+            <strong>PharmaFlask</strong> por <a href="https://github.com/antoniotorresz">Antonio Torres</a>. Este código
+            está bajo licencia
             <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
-            <br>
-            Icons made by <a href="https://www.flaticon.com/authors/pongsakornred" title="pongsakornRed">pongsakornRed</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
         </p>
     </div>
 </footer>
